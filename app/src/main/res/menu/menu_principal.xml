@@ -48,5 +48,5 @@
         android:orderInCategory="100"
         android:title="Actualizar Codigo"
         app:showAsAction="never"
-        android:visible="false" />
+        android:visible="true" />
 </menu>
