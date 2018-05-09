@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/victor.lagunas/LaLoma_Movil/bixolon_printer_v118/bixolon_printer_v118.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="26.0.2"
+        sha1="234264ee27203155599a0e7bab8f1c09e748efe2">
+        <dex dex="/Users/victor.lagunas/LaLoma_Movil/app/build/intermediates/transforms/preDex/release/19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/victor.lagunas/LaLoma_Movil/xerces/xerces.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="26.0.2"
+        sha1="214870287756f1890b43451d01c422a8a490bbb1">
+        <dex dex="/Users/victor.lagunas/LaLoma_Movil/app/build/intermediates/transforms/preDex/release/21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/victor.lagunas/LaLoma_Movil/volley/volley.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7eb90d3407943ccbac85ddb1406522baa36ef0ba">
+        <dex dex="/Users/victor.lagunas/LaLoma_Movil/app/build/intermediates/transforms/preDex/release/22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/victor.lagunas/LaLoma_Movil/jpos114-controls/jpos114-controls.jar"
+        jumboMode="false"
+        min-sdk-version="23"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fac20b1c2ed8b98bf7a02107c8556acb1986aee9">
+        <dex dex="/Users/victor.lagunas/LaLoma_Movil/app/build/intermediates/transforms/preDex/release/20.jar" />
+    </item>
+
+</items>

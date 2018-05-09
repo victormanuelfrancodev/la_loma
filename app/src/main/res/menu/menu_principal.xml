@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.salgado.jorge.keymanky.procesodeventa.Principal">
+    <item
+        android:id="@+id/base"
+        android:orderInCategory="100"
+        android:title="Reinicio de Base de Datos"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu"
+        android:orderInCategory="100"
+        android:title="Ir a Menu"
+        app:showAsAction="never" />
+    <item
+    android:id="@+id/ventas"
+    android:orderInCategory="100"
+    android:title="Ir a Ventas"
+    app:showAsAction="never" />
+    <item
+        android:id="@+id/conecta_gps"
+        android:orderInCategory="100"
+        android:title="Conectar GPS"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/consulta_gps"
+        android:orderInCategory="100"
+        android:title="Consulta GPS"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/imprimir"
+        android:orderInCategory="100"
+        android:title="Imprimir"
+        app:showAsAction="never"
+        android:visible="false" />
+    <item
+        android:id="@+id/blue"
+        android:orderInCategory="100"
+        android:title="Bluetooth"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/conectar"
+        android:orderInCategory="100"
+        android:title="Preparar impresión"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/actualizar"
+        android:orderInCategory="100"
+        android:title="Actualizar Codigo"
+        app:showAsAction="never"
+        android:visible="false" />
+</menu>
