@@ -34,6 +34,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -164,138 +166,12 @@ public class Principal extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        ((ManagerService) new Builder().baseUrl("https://www.apps-sellcom-dev.com/LALOMA_CENTRAL-web/").addConverterFactory(GsonConverterFactory.create()).build().create(ManagerService.class)).setConfirmar(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString())).enqueue(new Callback<ResponseBody>() {
+                        ((ManagerService) new Builder().baseUrl("https://www.apps-sellcom-dev.com/LALOMA_CENTRAL-web/").addConverterFactory(GsonConverterFactory.create()).build().create(ManagerService.class)).setConfirmar(RequestBody.create(
+                                MediaType.parse("application/json; charset=utf-8"), json.toString())).enqueue(new Callback<ResponseBody>() {
                             /* JADX WARNING: inconsistent code. */
                             /* Code decompiled incorrectly, please refer to instructions dump. */
                             public void onResponse(retrofit2.Call<okhttp3.ResponseBody> r19, retrofit2.Response<okhttp3.ResponseBody> r20) {
-                                /*
-                                r18 = this;
-                                r10 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = r20.body();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = (okhttp3.ResponseBody) r16;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = r16.string();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r10.<init>(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = "respuesta";
-                                r17 = "apiKey";
-                                r0 = r17;
-                                r17 = r10.getString(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                android.util.Log.d(r16, r17);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = "respuesta";
-                                r17 = "authToken";
-                                r0 = r17;
-                                r17 = r10.getString(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                android.util.Log.d(r16, r17);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r14 = new android.text.format.Time;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = android.text.format.Time.getCurrentTimezone();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r14.<init>(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r14.setToNow();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = "%Y/%m/%d";
-                                r0 = r16;
-                                r5 = r14.format(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r4 = new java.util.Date;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = java.lang.System.currentTimeMillis();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r4.<init>(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r6 = new java.text.SimpleDateFormat;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = "hh:mm aa";
-                                r17 = java.util.Locale.ENGLISH;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r1 = r17;
-                                r6.<init>(r0, r1);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r15 = r6.format(r4);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16.<init>();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r16 = r0.append(r15);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r17 = " - ";
-                                r16 = r16.append(r17);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r16 = r0.append(r5);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r8 = r16.toString();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r9 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r9.<init>();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = "clientId";
-                                r17 = com.salgado.jorge.keymanky.procesodeventa.JavaScriptInterface.usuario3;	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r0 = r16;
-                                r1 = r17;
-                                r10.put(r0, r1);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = "route";
-                                r17 = com.salgado.jorge.keymanky.procesodeventa.JavaScriptInterface.ruta2;	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r0 = r16;
-                                r1 = r17;
-                                r10.put(r0, r1);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = "onDate";
-                                r17 = com.salgado.jorge.keymanky.procesodeventa.JavaScriptInterface.fechaestatica;	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r0 = r16;
-                                r1 = r17;
-                                r10.put(r0, r1);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = "endDate";
-                                r0 = r16;
-                                r10.put(r0, r8);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = new java.lang.StringBuilder;	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16.<init>();	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r17 = "{ lat: ";
-                                r16 = r16.append(r17);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r17 = com.salgado.jorge.keymanky.procesodeventa.JavaScriptInterface.latitudeGPS;	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = r16.append(r17);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r17 = " long: ";
-                                r16 = r16.append(r17);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r17 = com.salgado.jorge.keymanky.procesodeventa.JavaScriptInterface.longitudeGPS;	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = r16.append(r17);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r17 = " }";
-                                r16 = r16.append(r17);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r11 = r16.toString();	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                                r16 = "checkinLocation";
-                                r0 = r16;
-                                r10.put(r0, r11);	 Catch:{ JSONException -> 0x0129, IOException -> 0x0133 }
-                            L_0x00d3:
-                                r16 = "application/json; charset=utf-8";
-                                r16 = okhttp3.MediaType.parse(r16);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r17 = r10.toString();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r3 = okhttp3.RequestBody.create(r16, r17);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = new retrofit2.Retrofit$Builder;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16.<init>();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r17 = "https://www.apps-sellcom-dev.com/LALOMA_CENTRAL-web/";
-                                r16 = r16.baseUrl(r17);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r17 = retrofit2.converter.gson.GsonConverterFactory.create();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = r16.addConverterFactory(r17);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r12 = r16.build();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = com.salgado.jorge.keymanky.procesodeventa.ManagerService.class;
-                                r0 = r16;
-                                r13 = r12.create(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r13 = (com.salgado.jorge.keymanky.procesodeventa.ManagerService) r13;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = "apiKey";
-                                r0 = r16;
-                                r16 = r10.getString(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r17 = "authToken";
-                                r0 = r17;
-                                r17 = r10.getString(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r1 = r17;
-                                r2 = r13.setInsertar(r0, r1, r3);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r16 = new com.salgado.jorge.keymanky.procesodeventa.Principal$2$2$1;	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r1 = r18;
-                                r0.<init>();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                r0 = r16;
-                                r2.enqueue(r0);	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                            L_0x0128:
-                                return;
-                            L_0x0129:
-                                r7 = move-exception;
-                                r7.printStackTrace();	 Catch:{ JSONException -> 0x012e, IOException -> 0x0133 }
-                                goto L_0x00d3;
-                            L_0x012e:
-                                r7 = move-exception;
-                                r7.printStackTrace();
-                                goto L_0x0128;
-                            L_0x0133:
-                                r7 = move-exception;
-                                r7.printStackTrace();
-                                goto L_0x0128;
-                                */
+
                                 throw new UnsupportedOperationException("Method not decompiled: com.salgado.jorge.keymanky.procesodeventa.Principal.2.2.onResponse(retrofit2.Call, retrofit2.Response):void");
                             }
 
@@ -306,6 +182,34 @@ public class Principal extends AppCompatActivity {
                 }
             });
             showToast("");
+            for (int i=0; i< VariablesGlobales.rutas.size(); i++) {
+                Ruta ruta = VariablesGlobales.rutas.get(i);
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("clientID", ruta.clienteId);
+                    json.put("route", ruta.route);
+                    json.put("onDate", ruta.onDate);
+                    json.put("endDate", ruta.endDate);
+                    json.put("checkinLocation", ruta.checkinLocation);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.apps-sellcom-dev.com/LALOMA_CENTRAL-web/").addConverterFactory(GsonConverterFactory.create()).build();
+                ManagerService managerService = retrofit.create(ManagerService.class);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+                managerService.setInsertar("e1c35bf0594ac92177406e4ef28d46f671a00fafb7347b880a7a42450e4bbad0", "3122d44f-3900-45be-9709-0d4d5a05aad2", requestBody).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
             return true;
         } else {
            /* if (id == R.id.lectorCodigo) {

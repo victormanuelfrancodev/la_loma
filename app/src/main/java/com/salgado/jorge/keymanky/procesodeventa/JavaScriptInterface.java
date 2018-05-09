@@ -21,6 +21,17 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JavaScriptInterface {
     public static String fechaestatica;
@@ -51,11 +62,11 @@ public class JavaScriptInterface {
         }
     }
 
-    private void inserta(String ruta, String usuario2) {
+    private void inserta(final String ruta, final String usuario2) {
         ruta2 = ruta;
         Time time = new Time(Time.getCurrentTimezone());
         time.setToNow();
-        String horafecha = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH).format(new Date(System.currentTimeMillis())) + " - " + time.format("%Y/%m/%d");
+        final String horafecha = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH).format(new Date(System.currentTimeMillis())) + " - " + time.format("%Y/%m/%d");
         fechaestatica = horafecha;
         //Toast.makeText(this.mContext,ruta.toString(),Toast.LENGTH_LONG).show();
         String texto = ruta2.toString();
@@ -76,6 +87,38 @@ public class JavaScriptInterface {
         param.add(new BasicNameValuePair("id_ruta", ruta));
         param.add(new BasicNameValuePair("fecha", horafecha));
         param.add(new BasicNameValuePair("hora", "00"));
+
+
+
+        /*Inserta en servicio si hay internet */
+        JSONObject json = new JSONObject();
+        try {
+            json.put("clientID",Integer.parseInt(usuario2));
+            json.put("route",ruta);
+            json.put("onDate",horafecha);
+            json.put("endDate",horafecha);
+            json.put("checkinLocation","{ln:"+latitudeGPS.toString()+",lt:"+longitudeGPS.toString()+"}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.apps-sellcom-dev.com/LALOMA_CENTRAL-web/").addConverterFactory(GsonConverterFactory.create()).build();
+        ManagerService managerService = retrofit.create(ManagerService.class);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json.toString());
+        managerService.setInsertar("e1c35bf0594ac92177406e4ef28d46f671a00fafb7347b880a7a42450e4bbad0","3122d44f-3900-45be-9709-0d4d5a05aad2",requestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                VariablesGlobales.rutas.add(new Ruta(Integer.parseInt(usuario2),ruta,horafecha,horafecha,"{ln:"+latitudeGPS.toString()+",lt:"+longitudeGPS.toString()+"}"));
+            }
+        });
+
+        /*Fin de inserción*/
+
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(param));
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpClient.execute(httpPost).getEntity().getContent()));
