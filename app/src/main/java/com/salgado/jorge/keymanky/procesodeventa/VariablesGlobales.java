@@ -1,5 +1,8 @@
 package com.salgado.jorge.keymanky.procesodeventa;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 

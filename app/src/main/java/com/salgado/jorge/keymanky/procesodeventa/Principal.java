@@ -26,6 +26,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -52,6 +57,7 @@ public class Principal extends AppCompatActivity {
     private final String TAG_REQUEST = "MY_TAG";
     private ArrayAdapter<CharSequence> arrayAdapter;
     private final ArrayList<CharSequence> bondedDevices = new ArrayList();
+    public static final String KEY_CONNECTIONS = "KEY_CONNECTIONS";
     private int brightness = 50;
     public WebView browser;
     private int compress = 0;
@@ -182,7 +188,12 @@ public class Principal extends AppCompatActivity {
                 }
             });
             showToast("");
-            for (int i=0; i< VariablesGlobales.rutas.size(); i++) {
+
+            String connectionsJSONString = getPreferences(MODE_PRIVATE).getString(KEY_CONNECTIONS, null);
+            Type type = new TypeToken< ArrayList < Ruta >>() {}.getType();
+            ArrayList < Ruta > rutasObject = new Gson().fromJson(connectionsJSONString, type);
+
+            for (int i=0; i< rutasObject.size(); i++) {
                 Ruta ruta = VariablesGlobales.rutas.get(i);
                 JSONObject json = new JSONObject();
                 try {

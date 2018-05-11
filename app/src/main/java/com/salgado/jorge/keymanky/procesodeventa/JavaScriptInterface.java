@@ -1,10 +1,14 @@
 package com.salgado.jorge.keymanky.procesodeventa;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.format.Time;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,6 +46,7 @@ public class JavaScriptInterface {
     GPSTracker gps;
     Context mContext;
     WebView wb;
+    public static final String KEY_CONNECTIONS = "KEY_CONNECTIONS";
 
     JavaScriptInterface(Context c, WebView webView) {
         this.mContext = c;
@@ -114,6 +119,13 @@ public class JavaScriptInterface {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 VariablesGlobales.rutas.add(new Ruta(Integer.parseInt(usuario2),ruta,horafecha,horafecha,"{ln:"+latitudeGPS.toString()+",lt:"+longitudeGPS.toString()+"}"));
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences.Editor editor = settings.edit();
+                String rutasString = new Gson().toJson(VariablesGlobales.rutas);
+                editor.putString(KEY_CONNECTIONS, rutasString);
+                editor.commit();
+
+
             }
         });
 
